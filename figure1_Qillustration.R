@@ -2,8 +2,7 @@
 #! CHANGE DIRECTORY TO WHEREEVER FILE SHOULD BE WRITTEN, e.g. C:\My Documents\Dropbox\... !#
 setwd("C:/Users/lhund/Dropbox/PROJECTS/LQAS/SensSpec/pics")
 
-#! READ IN FUNCTIONS.R !#
-source("C:/Users/lhund/Dropbox/PROJECTS/LQAS/SensSpec/code/functions.R")
+library(lqasu)
 
 pl 	<- .75
 pu 	<- .9
