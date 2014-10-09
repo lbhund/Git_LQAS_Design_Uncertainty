@@ -20,7 +20,7 @@ plotQ <- function(pl=NULL, pu=NULL, rhol=NULL, rhou=NULL, n=NULL, m=NULL, k=NULL
 
 	psi	<- function(rho) (m-1)*rho/(m*k-1)
 
-	par(mfrow=c(1,2))
+	par(mfrow=c(1,2), mar=c(5, 5, 2, 1) + 0.1)
 	
 	pvec 	<- seq(0, 1, length=100)
 
@@ -54,20 +54,26 @@ plotQ <- function(pl=NULL, pu=NULL, rhol=NULL, rhou=NULL, n=NULL, m=NULL, k=NULL
 	pcut 	<- round(pvec[which(Qvec == min(Qvec))], digits=3)
 	#plot pdist
 	if(fixrho==T){
-		plot(pvec, flx, lwd=2, type="l", main=bquote(p ==.(pcut)))
-		lines(pvec, fux, col="blue", lwd=2)
+		plot(pvec, flx, lwd=2, lty=2, type="l", cex=1.7, cex.main=1.9, 
+			cex.lab=1.7, cex.axis=1.7, xlab="p", ylab="Density")
+		lines(pvec, fux, lwd=2)
 	} else{
-		plot(density(rlx), xlim=c(0,1), main=bquote(p ==.(pcut)), lwd=2)
-		lines(density(rux), col="blue", lwd=2)
+		plot(density(rlx), xlim=c(0,1), lty=2, lwd=2, cex=1.7, cex.main=1.9, 
+			cex.lab=1.7, cex.axis=1.7, xlab="p", ylab="Density")
+		lines(density(rux), lwd=2)
 	}
 	abline(v=pcut)
+	text(.8, 20, bquote(p ==.(pcut)), pos=4, cex=1.5)
+	text(.8, 18, bquote(Q==.(Q)), pos=4, cex=1.5)
+
 	#plot BF vs x
 	if(fixrho==T)
 		bf 	<- function(x) (dbetabinom(x, n, pu, psiu, log=T) - dbetabinom(x, n, pl, psil, log=T))
 	if(fixrho==F)
 		bf 	<- function(x) mean(sapply(1:nsim, function(tt) (dbetabinom(x, n, pu, psiu[tt], log=T) - dbetabinom(x, n, pl, psil[tt], log=T))))
 	x 	<- 0:n
-	plot(x, sapply(x, bf), type="l", main=bquote(Q==.(Q)), ylab="BF")
+	plot(x, sapply(x, bf), type="l", ylab="BF", xlab="X", cex=1.7, 
+			cex.lab=1.7, cex.axis=1.7, cex.main=1.9)
 }
 
 #output is graph of ple and pue, as well as bayes factor as a function of x
