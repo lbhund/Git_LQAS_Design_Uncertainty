@@ -2,6 +2,7 @@
 #! CHANGE DIRECTORY TO WHEREEVER FILE SHOULD BE WRITTEN, e.g. C:\My Documents\Dropbox\... !#
 setwd("C:/Users/lhund/Dropbox/PROJECTS/LQAS/SensSpec/pics")
 
+set.seed(3)
 library(lqasu)
 
 pl 	<- .75
@@ -46,8 +47,8 @@ abline(v=aline, lty=2)
 abline(v=bline, lty=2)
 abline(v=q$p)
 #legend("topright", paste("Q=",round(q$Q, digits=3)), cex=1.9)
-text(.62, 10, expression(p[le]), cex=1.9)
-text(.72, 10, expression(p[ue]), cex=1.9)
+text(.62, 10, expression(f[l]), cex=1.9)
+text(.72, 10, expression(f[u]), cex=1.9)
 dev.off()
 
 q$p
